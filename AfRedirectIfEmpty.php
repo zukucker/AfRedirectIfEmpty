@@ -28,6 +28,7 @@ class AfRedirectIfEmpty extends Plugin
 
     public function onFrontend(\Enlight_Event_EventArgs $args)
     {
+        // sollte sich jemand ansehen der sich auskennt - ob das nicht fatal ist
         $controller = $args->getSubject();
         $view = $controller->View();
         $req = $controller->Request();
