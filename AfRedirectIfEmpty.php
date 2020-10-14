@@ -40,6 +40,7 @@ class AfRedirectIfEmpty extends Plugin
         $host = Shopware()->Shop()->getHost();
 
         // hier herausfinden - wie herausfindet ob http oder https - vllt auch voellig falscher Ansatz
+        // sollte aber ja eh durch die htaccess abgefangen werden
         $finalUrl = ("http://" . $host . $pathInfo);
 
         // wenn p=x größer eins und keine article vorhanden dann redirect
