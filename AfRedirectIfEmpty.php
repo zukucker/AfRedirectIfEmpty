@@ -22,7 +22,7 @@ class AfRedirectIfEmpty extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'Enlight_Controller_Action_PostDispatch_Frontend' => 'onFrontend',
+            'Enlight_Controller_Action_PostDispatch_Frontend_Listing' => 'onFrontend',
         ];
     }
 
