@@ -28,7 +28,6 @@ class AfRedirectIfEmpty extends Plugin
 
     public function onFrontend(\Enlight_Event_EventArgs $args)
     {
-        // sollte sich jemand ansehen der sich auskennt - ob das nicht fatal ist
         $controller = $args->getSubject();
         $view = $controller->View();
         $req = $controller->Request();
@@ -39,7 +38,7 @@ class AfRedirectIfEmpty extends Plugin
         $pathInfo= $req->getPathInfo();
         $host = Shopware()->Shop()->getHost();
 
-        // hier herausfinden - wie herausfindet ob http oder https - vllt auch voellig falscher Ansatz
+        // wie hearusfinden ob http oder https - vllt auch voellig falscher Ansatz
         // sollte aber ja eh durch die htaccess abgefangen werden
         $finalUrl = ("http://" . $host . $pathInfo);
 
