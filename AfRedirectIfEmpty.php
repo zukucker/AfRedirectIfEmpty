@@ -30,6 +30,10 @@ class AfRedirectIfEmpty extends Plugin
     {
         $config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName($this->getName());
         $code = $config['AfRedirectIfEmptyCode'];
+        if(!$code){
+            $code = 410;
+        }
+
         $controller = $args->getSubject();
         $view = $controller->View();
         $req = $controller->Request();
@@ -40,21 +44,14 @@ class AfRedirectIfEmpty extends Plugin
         $pathInfo= $req->getPathInfo();
         $host = Shopware()->Shop()->getHost();
 
-        // wie hearusfinden ob http oder https - vllt auch voellig falscher Ansatz
-        // sollte aber ja eh durch die htaccess abgefangen werden
+        // TODO: detect if http oder https
+        // should be done with the .htaccess
         $finalUrl = ("http://" . $host . $pathInfo);
 
-        // wenn p=x größer eins und keine article vorhanden dann redirect
+        // if p=x greater 1 and no articles found redirect
         if($pageRequest > 1 && !$articles){
-            // setze response code auf 410 | 404 - das koennte man dann im backend konfigurierbar machen
-            // leite weiter auf die Kategorieseite ohne p=x
-            header("Location:" . $finalUrl);
-            if($code){
-                http_response_code($code);
-            }else{
-                http_response_code(410);
-            }
-
+            // redirect to category main page without p=x
+            header("Location:" . $finalUrl, true, $code);
             exit;
         }
     }
