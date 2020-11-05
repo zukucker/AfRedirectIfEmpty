@@ -28,6 +28,8 @@ class AfRedirectIfEmpty extends Plugin
 
     public function onFrontend(\Enlight_Event_EventArgs $args)
     {
+        $config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName($this->getName());
+        $code = $config['AfRedirectIfEmptyCode'];
         $controller = $args->getSubject();
         $view = $controller->View();
         $req = $controller->Request();
@@ -45,9 +47,14 @@ class AfRedirectIfEmpty extends Plugin
         // wenn p=x größer eins und keine article vorhanden dann redirect
         if($pageRequest > 1 && !$articles){
             // setze response code auf 410 | 404 - das koennte man dann im backend konfigurierbar machen
-            http_response_code(410);
             // leite weiter auf die Kategorieseite ohne p=x
             header("Location:" . $finalUrl);
+            if($code){
+                http_response_code($code);
+            }else{
+                http_response_code(410);
+            }
+
             exit;
         }
     }

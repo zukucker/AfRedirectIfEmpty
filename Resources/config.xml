@@ -4,12 +4,12 @@
 
     <elements>
         <element type="text">
-            <name>demoConfig</name>
-            <label lang="de">Demo Konfiguration</label>
-            <label lang="en">Demo configuration</label>
-            <value>Just a demo configuration, without any effects.</value>
-            <description lang="de">Nur ein hoffentlich hilfreicher Text.</description>
-            <description lang="en">Hopefully this text will help you.</description>
+            <name>AfRedirectIfEmptyCode</name>
+            <label lang="de">Status Code</label>
+            <label lang="en">Status Code</label>
+            <value>410</value>
+            <description lang="de">Status Code welcher gesetzt wird, wenn Kategorie leer ist.</description>
+            <description lang="en">Status Code welcher gesetzt wird, wenn Kategorie leer ist.</description>
         </element>
     </elements>
 
